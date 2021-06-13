@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: $gray-50;
+  margin: 0;
+}
+
+body,
+input,
+textarea,
+button {
+  font: 500 1rem Inter, sans-serif;
+  color: $gray-500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: $font-family-alt;
+  color: $gray-800;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+}

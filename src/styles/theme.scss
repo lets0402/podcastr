@@ -1,0 +1,12 @@
+// Global
+@import "variables.scss";
+@import "responsive.scss";
+@import "global.scss";
+@import "app.module.scss";
+
+// Components
+@import "../components/Header/styles.module.scss";
+@import "../components/Player/styles.module.scss";
+
+// Pages
+@import "../pages/styles.module.scss";

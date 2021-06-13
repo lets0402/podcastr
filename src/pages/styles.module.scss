@@ -1,0 +1,183 @@
+@import "../styles/variables";
+
+.homepage {
+  padding: 0 4rem;
+  height: calc(100vh - 6.5rem);
+  overflow-y: scroll;
+  margin: 0 auto;
+  flex: 1 0 auto;
+  h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.lastestEpisodes {
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0.75rem;
+
+    li {
+      background: $white;
+      border: 1px solid $gray-100;
+      padding: 1.25rem;
+      border-radius: 1.5rem;
+      position: relative;
+
+      display: flex;
+      flex: auto;
+      align-items: center;
+
+      .imageThumbnail {
+        min-width: 5rem;
+      }
+
+      img {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 0.5rem;
+      }
+
+      .episodeDetails {
+        margin-left: 1rem;
+
+        a {
+          display: block;
+          color: $gray-800;
+          font-family: Lexend, sans-serif;
+          font-weight: 600;
+          text-decoration: none;
+          line-height: 1.4rem;
+          font-size: 1rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        p {
+          font-size: 0.875rem;
+          margin-top: 0.5rem;
+          max-width: 70%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        span {
+          display: inline-block;
+          margin-top: 0.5rem;
+          font-size: 0.875rem;
+
+          &:last-of-type {
+            margin-left: 0.5rem;
+            padding-left: 0.5rem;
+            position: relative;
+            text-align: left;
+            &::before {
+              content: "";
+              width: 4px;
+              height: 4px;
+              border-radius: 2px;
+              background: #ddd;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+        }
+
+        button {
+          position: absolute;
+          right: 2rem;
+          bottom: 2rem;
+
+          height: 2.5rem;
+          width: 2.5rem;
+          background: $white;
+          border: 1px solid $gray-100;
+          border-radius: 0.675rem;
+          font-size: 0;
+
+          transform: filter 0.2s;
+          img {
+            height: 1.5rem;
+            width: 1.5rem;
+
+            &:hover {
+              filter: brightness(0.85);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.allEpisodes {
+  padding-bottom: 2rem;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 0.75rem;
+    border-bottom: 1px solid $gray-100;
+    text-align: left;
+  }
+
+  th {
+    color: $gray-200;
+    text-transform: uppercase;
+    font: 500 0.75rem Lexend, sans-serif;
+    text-align: left;
+    padding-bottom: 0.75rem;
+  }
+
+  td {
+    font-size: 0.875rem;
+    padding: 0.75rem 0.75rem;
+
+    img {
+      width: 70vw;
+      border-radius: 0.5rem;
+    }
+
+    a {
+      color: $gray-800;
+      font-family: Lexend, sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.4rem;
+      font-size: 1rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    button {
+      height: 2.5rem;
+      width: 2.5rem;
+      background: $white;
+      border: 1px solid $gray-100;
+      border-radius: 0.675rem;
+      font-size: 0;
+
+      transform: filter 0.2s;
+      img {
+        height: 1.5rem;
+        width: 1.5rem;
+
+        &:hover {
+          filter: brightness(0.85);
+        }
+      }
+    }
+  }
+}
