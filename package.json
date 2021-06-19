@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "json-server server.json -w -p 3333",
     "server": "json-server server.json -w -p 3333"
   },
   "dependencies": {
