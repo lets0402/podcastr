@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next";
-import { api } from "../services/api";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
@@ -9,6 +8,7 @@ import Link from "next/link";
 import { PlayerContext } from "../components/Player/PlayerContext";
 import { useContext } from "react";
 import Head from "next/head";
+import api from "../services/api";
 
 type Episode = {
   id: string;
@@ -126,11 +126,20 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get("episodes", {
+  const { data } = await api.get("/episodes", {
     params: { _limit: 12, _sort: "published_at", _order: "desc" },
   });
+  // const response = await axios.get("http://localhost:3000/api/episodes", {
+  //   params: { _limit: 12, _sort: "published_at", _order: "desc" },
+  // });
 
-  const episodes = data.map((episode) => {
+  // const response = await fetch(
+  //   "/api/episodes?_limit=12&_sort=published_at&_order=desc"
+  // );
+  // const data = await response.json();
+
+  const episodes = data.episodes.map((episode) => {
+    //const episodes = response.data.map((episode) => {
     return {
       id: episode.id,
       title: episode.title,
