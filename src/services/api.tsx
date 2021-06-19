@@ -7,7 +7,7 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
   proxy: {
-    host: "localhost",
+    host: process.env.HOST || "localhost",
     port: Number(PORT),
     protocol: "http",
   },
