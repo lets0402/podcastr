@@ -68,7 +68,7 @@ export default function Episode({ episode }: EpisodeProps) {
   );
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get("/episodes", {
+  const { data } = await axios.get("/episodes", {
     params: { _limit: 2, _sort: "published_at", _order: "desc" },
   });
 
@@ -84,7 +84,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params;
-  const { data } = await api.get(`/episodes/?id=${slug}`);
+  const { data } = await axios.get(`/episodes/${slug}`);
 
   const episode = {
     id: data?.id,
