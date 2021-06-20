@@ -130,14 +130,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const { data } = await axios.get("/episodes", {
     params: { _limit: 12, _sort: "published_at", _order: "desc" },
   });
-  // const response = await axios.get("http://localhost:3000/api/episodes", {
-  //   params: { _limit: 12, _sort: "published_at", _order: "desc" },
-  // });
-
-  // const response = await fetch(
-  //   "/api/episodes?_limit=12&_sort=published_at&_order=desc"
-  // );
-  // const data = await response.json();
 
   const episodes = data.episodes.map((episode) => {
     //const episodes = response.data.map((episode) => {
