@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from "@vercel/node";
-import site from "../../../../server.json";
+import data from "../../../../server.json";
 const url = require("url");
 
 export default async (request: NowRequest, response: NowResponse) => {
@@ -8,13 +8,19 @@ export default async (request: NowRequest, response: NowResponse) => {
     case "GET":
       const url_parts = url.parse(request.url, true);
       const query = url_parts.query;
+      const id = query?.id;
       const limit = query?._limit;
       const sort = query?._sort;
       const order = query?._order;
-      let result = site.episodes;
+      let result = data.episodes;
+
+      if (id != null) {
+        const episode = data.episodes.find((item) => item.id === id);
+        return response.status(200).send({ episodes: episode });
+      }
 
       if (limit != null) {
-        result = site.episodes.splice(0, limit);
+        result = data.episodes.splice(0, limit);
       }
 
       if (sort != null) {
@@ -30,15 +36,7 @@ export default async (request: NowRequest, response: NowResponse) => {
         });
       }
 
-      response.status(200).json(result);
-      break;
-    case "POST":
-      const { main, navbar, footer } = request.body;
-      let novoConteudo = {
-        site: [],
-      };
-      novoConteudo.site.push({ main, navbar, footer });
-      response.status(200).json(novoConteudo);
+      return response.status(200).send({ episodes: result });
       break;
     default:
       response.setHeader("Allow", ["GET", "POST"]);

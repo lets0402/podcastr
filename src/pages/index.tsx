@@ -8,6 +8,7 @@ import Link from "next/link";
 import { PlayerContext } from "../components/Player/PlayerContext";
 import { useContext } from "react";
 import Head from "next/head";
+import axios from "axios";
 import api from "../services/api";
 
 type Episode = {
@@ -126,10 +127,11 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get("/episodes", {
-    params: { _limit: 12, _sort: "published_at", _order: "desc" },
-  });
+  // const { data } = await api.get("/api/episodes", {
+  //   params: { _limit: 12, _sort: "published_at", _order: "desc" },
+  // });
 
+  const data = await import("../../server.json");
   const episodes = data.episodes.map((episode) => {
     //const episodes = response.data.map((episode) => {
     return {

@@ -68,10 +68,10 @@ export default function Episode({ episode }: EpisodeProps) {
   );
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await axios.get("/episodes", {
-    params: { _limit: 2, _sort: "published_at", _order: "desc" },
-  });
-
+  // const { data } = await api.get("/api/episodes", {
+  //   params: { _limit: 2, _sort: "published_at", _order: "desc" },
+  // });
+  const data = await import("../../../server.json");
   const paths = data.episodes.map((episode: { id: any }) => {
     return { params: { slug: episode.id } };
   });
@@ -84,26 +84,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params;
-  const { data } = await api.get(`/episodes/?id=${slug}`);
+  // const { data } = await api.get(`/api/episodes/?id=${slug}`);
+  const data = await import("../../../server.json");
+  const item = data.episodes.find((e) => e.id === slug);
 
   const episode = {
-    id: data?.id,
-    title: data?.title,
-    thumbnail: data?.thumbnail,
-    members: data?.members,
-    published_at: data?.published_at
-      ? format(parseISO(data?.published_at), "d MMM yy", {
+    id: item?.id,
+    title: item?.title,
+    thumbnail: item?.thumbnail,
+    members: item?.members,
+    published_at: item?.published_at
+      ? format(parseISO(item?.published_at), "d MMM yy", {
           locale: ptBR,
         })
       : null,
-    duration: Number(data?.file?.duration),
-    durationAsString: convertDurationToTimeString(Number(data?.file?.duration)),
-    description: data?.description,
-    url: data?.file?.url,
+    duration: Number(item?.file?.duration),
+    durationAsString: convertDurationToTimeString(Number(item?.file?.duration)),
+    description: item?.description,
+    url: item?.file?.url,
   };
 
   return {
-    props: { episode: data ? null : episode },
+    props: { episode: episode },
     revalidate: 60 * 60 * 24,
   };
 };
