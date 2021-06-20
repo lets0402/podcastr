@@ -9,7 +9,6 @@ import { PlayerContext } from "../components/Player/PlayerContext";
 import { useContext } from "react";
 import Head from "next/head";
 import api from "../services/api";
-import axios from "axios";
 
 type Episode = {
   id: string;
