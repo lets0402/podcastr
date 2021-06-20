@@ -127,7 +127,7 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get("/episodes", {
+  const { data } = await api.get("/episodes", {
     params: { _limit: 12, _sort: "published_at", _order: "desc" },
   });
 
